@@ -16,6 +16,8 @@ gson = "2.10.1"
 kotlinx-serialization = "1.6.2"
 retrofit-serialization-converter = "1.0.0"
 animated-navigation-bar = "1.0.0"
+coil = "2.6.0"
+paging = "3.3.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -41,6 +43,9 @@ okhttp-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-i
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 retrofit-serialization-converter = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "retrofit-serialization-converter" }
 exyte-animated-navigation-bar = { module = "com.exyte:animated-navigation-bar", version.ref = "animated-navigation-bar" }
+androidx-coil = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
+androidx-paging-runtime = { group = "androidx.paging", name = "paging-runtime", version.ref = "paging" }
+androidx-paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "paging" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

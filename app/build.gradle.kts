@@ -76,7 +76,11 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.retrofit.serialization.converter)
     implementation(libs.exyte.animated.navigation.bar)
-
+    implementation(libs.androidx.coil)
+    
+    // Paging
+    implementation(libs.androidx.paging.runtime)
+    implementation(libs.androidx.paging.compose)
 
 
     testImplementation(libs.junit)

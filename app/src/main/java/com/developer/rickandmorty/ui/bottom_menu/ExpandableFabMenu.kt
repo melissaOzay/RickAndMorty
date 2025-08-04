@@ -97,7 +97,7 @@ fun ExpandableFabMenu(
                         if (pathLength > 0) {
                             drawPath(
                                 path = path,
-                                color = Color(0xFFB2A3CB),
+                                color = Color(0xFF8BC34A),
                                 style = Stroke(
                                     width = 5.dp.toPx(),
                                     pathEffect = PathEffect.dashPathEffect(
@@ -137,8 +137,8 @@ fun ExpandableFabMenu(
                     .onGloballyPositioned { coordinates ->
                         iconCenters[index] = coordinates.positionInParent() + Offset(coordinates.size.width / 2f, coordinates.size.height / 2f)
                     },
-                containerColor = MaterialTheme.colorScheme.secondaryContainer,
-                contentColor = MaterialTheme.colorScheme.onSecondaryContainer
+                containerColor = Color.Green,
+                contentColor = Color.White
             ) {
                 Icon(imageVector = item.icon, contentDescription = item.title, modifier = Modifier.size(20.dp))
             }
@@ -146,6 +146,7 @@ fun ExpandableFabMenu(
 
         FloatingActionButton(
             onClick = { isExpanded = !isExpanded },
+            containerColor= Color(0xFF8BC34A),
             modifier = Modifier.onGloballyPositioned { coordinates ->
                 mainFabCenter = coordinates.positionInParent() + Offset(coordinates.size.width / 2f, coordinates.size.height / 2f)
             }

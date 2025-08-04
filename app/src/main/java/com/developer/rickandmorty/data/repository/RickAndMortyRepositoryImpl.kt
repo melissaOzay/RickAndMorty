@@ -1,8 +1,13 @@
 package com.developer.rickandmorty.data.repository
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import com.developer.rickandmorty.core.Result
 import com.developer.rickandmorty.data.network.RickAndMortyApiService
+import com.developer.rickandmorty.domain.datasource.CharactersPagingSource
 import com.developer.rickandmorty.domain.mapper.toCharacterModel
+import com.developer.rickandmorty.domain.model.CharacterDetailModel
 import com.developer.rickandmorty.domain.model.CharacterModel
 import com.developer.rickandmorty.domain.repository.RickAndMortyRepository
 import kotlinx.coroutines.flow.Flow
@@ -27,6 +32,18 @@ class RickAndMortyRepositoryImpl @Inject constructor(
                emit(Result.Error(e.message ?: "An unknown error occurred"))
            }
        }
+    }
+
+    override fun getCharactersPaging(): Flow<PagingData<CharacterDetailModel>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = 20,
+                enablePlaceholders = false
+            ),
+            pagingSourceFactory = {
+                CharactersPagingSource(apiService)
+            }
+        ).flow
     }
 
 

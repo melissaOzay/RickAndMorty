@@ -9,7 +9,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.developer.rickandmorty.ui.bottom_menu.MainScreenWithFabMenu
-import com.developer.rickandmorty.ui.character.CharacterListVM
+import com.developer.rickandmorty.ui.home.CharacterListVM
 import com.developer.rickandmorty.ui.theme.RickAndMortyTheme
 import dagger.hilt.android.AndroidEntryPoint
 
