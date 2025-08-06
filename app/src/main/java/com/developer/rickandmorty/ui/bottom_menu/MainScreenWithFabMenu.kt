@@ -21,6 +21,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.developer.rickandmorty.R
+import com.developer.rickandmorty.ui.favoritesScreen.FavoritesScreen
+import com.developer.rickandmorty.ui.favoritesScreen.FavoritesVM
 import com.developer.rickandmorty.ui.home.CharacterListVM
 import com.developer.rickandmorty.ui.home.HomeScreen
 
@@ -29,7 +31,9 @@ enum class Screen {
 }
 
 @Composable
-fun MainScreenWithFabMenu(viewModel: CharacterListVM? = null) {
+fun MainScreenWithFabMenu(characterListVM: CharacterListVM? = null ,
+favoriteVM: FavoritesVM? = null
+) {
     var currentScreen by remember { mutableStateOf(Screen.HOME) }
 
     val homeIcon = Icons.Default.Home
@@ -71,8 +75,8 @@ fun MainScreenWithFabMenu(viewModel: CharacterListVM? = null) {
         ) {
             when (currentScreen) {
                 Screen.HOME -> {
-                    if (viewModel != null) {
-                        HomeScreen(viewModel = viewModel)
+                    if (characterListVM != null) {
+                        HomeScreen(viewModel = characterListVM)
                     } else {
                         // Preview fallback
                         Box(modifier = Modifier.fillMaxSize()) {
@@ -81,7 +85,7 @@ fun MainScreenWithFabMenu(viewModel: CharacterListVM? = null) {
                     }
                 }
 
-                Screen.FAVORITE -> FavoriteScreen()
+                Screen.FAVORITE -> favoriteVM?.let { FavoritesScreen(it) }
                 Screen.EPISODE -> EpisodeScreen()
             }
         }

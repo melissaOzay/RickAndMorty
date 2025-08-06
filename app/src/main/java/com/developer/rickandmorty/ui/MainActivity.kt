@@ -9,6 +9,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.developer.rickandmorty.ui.bottom_menu.MainScreenWithFabMenu
+import com.developer.rickandmorty.ui.favoritesScreen.FavoritesVM
 import com.developer.rickandmorty.ui.home.CharacterListVM
 import com.developer.rickandmorty.ui.theme.RickAndMortyTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -17,7 +18,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     
     private val viewModel: CharacterListVM by viewModels()
-    
+    private val favoritesVM: FavoritesVM by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -26,7 +28,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MainScreenWithFabMenu(viewModel = viewModel)
+                    MainScreenWithFabMenu(characterListVM = viewModel, favoriteVM = favoritesVM)
                 }
             }
         }

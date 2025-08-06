@@ -7,7 +7,7 @@ import com.developer.rickandmorty.features.data.model.CharacterModel
 import kotlinx.coroutines.flow.Flow
 
 interface RickAndMortyRepository {
-    suspend fun getCharacterById(id: Int): Result<CharacterModel>
+    fun getFavoriteCharacter(): Flow<Result<List<CharacterDetailModel>>>
     suspend fun toggleFavorite(characterModel: CharacterDetailModel): Result<Boolean>
     fun getCharactersPaging(): Flow<PagingData<CharacterDetailModel>>
 }

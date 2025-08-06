@@ -12,6 +12,7 @@ import com.developer.rickandmorty.features.domain.datasource.CharactersPagingSou
 import com.developer.rickandmorty.features.domain.mapper.toCharacterModel
 import com.developer.rickandmorty.features.domain.repository.RickAndMortyRepository
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class RickAndMortyRepositoryImpl @Inject constructor(
@@ -19,21 +20,23 @@ class RickAndMortyRepositoryImpl @Inject constructor(
     private val apiService: RickAndMortyApiService
 ): RickAndMortyRepository {
 
-    override suspend fun getCharacterById(id: Int): Result<CharacterModel> {
-        return try {
-               val response = apiService.getCharacters(id)
-               val favoriteCharacters = characterLocalDS.getFavoriteCharacters()
-                if (response.characterRams.isNotEmpty()) {
-                     val characterModel = response.toCharacterModel(favoriteCharacters)
-                    Result.Success(characterModel)
+
+    override fun getFavoriteCharacter(): Flow<Result<List<CharacterDetailModel>>> {
+        return flow {
+            try {
+                val favoriteCharacters = characterLocalDS.getFavoriteCharacters()
+                if (favoriteCharacters.isEmpty()) {
+                    emit(Result.Error("No favorite characters found"))
                 } else {
-                     Result.Error("No character found with id: $id")
+                    emit(Result.Success(favoriteCharacters))
                 }
-           }catch (e: Exception) {
-              Result.Error(e.message ?: "An unknown error occurred")
-           }
+
+            }catch (e: Exception) {
+                emit(Result.Error(e.message ?: "An unknown error occurred"))
+            }
+        }
     }
-    
+
     override suspend fun toggleFavorite(characterModel: CharacterDetailModel): Result<Boolean> {
         return try {
             val isFavorite = characterLocalDS.toggleFavorite(characterModel)
