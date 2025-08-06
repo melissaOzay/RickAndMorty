@@ -1,7 +1,7 @@
 package com.developer.rickandmorty.di
 
 import com.developer.rickandmorty.BuildConfig
-import com.developer.rickandmorty.data.network.RickAndMortyApiService
+import com.developer.rickandmorty.features.data.remote.network.RickAndMortyApiService
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides

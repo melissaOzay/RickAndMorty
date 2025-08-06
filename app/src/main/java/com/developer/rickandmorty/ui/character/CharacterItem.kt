@@ -1,7 +1,6 @@
-package com.developer.rickandmorty.ui.home
+package com.developer.rickandmorty.ui.character
 
-import android.graphics.drawable.Icon
-import android.media.Image
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -15,10 +14,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -32,20 +30,23 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.developer.rickandmorty.R
-import com.developer.rickandmorty.domain.model.CharacterDetailModel
+import com.developer.rickandmorty.features.data.model.CharacterDetailModel
+import com.developer.rickandmorty.ui.favoritebutton.FavoriteButton
 import com.developer.rickandmorty.ui.theme.RickAndMortyTheme
 
 @Composable
 fun CharacterItem(
     character: CharacterDetailModel,
+    onFavoriteChange: (Boolean) -> Unit = {}
 ) {
+    
     Box(
         modifier = Modifier
             .height(200.dp)
             .fillMaxWidth()
             .background(color = Color.Transparent)
             .padding(bottom = 13.dp),
-            contentAlignment = Alignment.BottomStart
+        contentAlignment = Alignment.BottomStart
     ) {
 
         Box(
@@ -81,7 +82,7 @@ fun CharacterItem(
                             painter = when (character.status) {
                                 "Alive" -> painterResource(id = R.drawable.ic_heart_custom)
                                 "Dead" -> painterResource(id = R.drawable.ic_dead_custom)
-                                else ->painterResource(id = R.drawable.ic_question_mark_)
+                                else -> painterResource(id = R.drawable.ic_question_mark_)
                             },
                             contentDescription = null,
                         )
@@ -107,7 +108,7 @@ fun CharacterItem(
                             painter = when (character.gender) {
                                 "Male" -> painterResource(id = R.drawable.ic_male)
                                 "Female" -> painterResource(id = R.drawable.ic_female)
-                                else ->painterResource(id = R.drawable.ic_question_mark_)
+                                else -> painterResource(id = R.drawable.ic_question_mark_)
                             },
                             contentDescription = null,
                         )
@@ -125,6 +126,12 @@ fun CharacterItem(
                             overflow = TextOverflow.Ellipsis
                         )
                     }
+                    FavoriteButton(initialChecked = character.isFavorite,
+                        onFavoriteChange = {
+                            onFavoriteChange.invoke(it)
+                        }
+                        )
+
                     Spacer(modifier = Modifier.height(10.dp))
 
 
@@ -153,22 +160,5 @@ fun CharacterItem(
         }
 
 
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    RickAndMortyTheme {
-        CharacterItem(
-            CharacterDetailModel(
-                id = 1,
-                name = "Rick Sanchez",
-                status = "Alive",
-                gender = "",
-                image = "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
-                species = "Human",
-            )
-        )
     }
 }

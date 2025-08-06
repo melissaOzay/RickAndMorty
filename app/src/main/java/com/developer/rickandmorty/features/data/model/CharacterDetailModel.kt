@@ -1,4 +1,4 @@
-package com.developer.rickandmorty.domain.model
+package com.developer.rickandmorty.features.data.model
 
 data class CharacterDetailModel(
     val id: Int,
@@ -7,4 +7,5 @@ data class CharacterDetailModel(
     val species: String,
     val gender: String,
     val image: String,
+    var isFavorite: Boolean = false,
 )

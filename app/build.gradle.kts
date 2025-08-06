@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.room)
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
     id("org.jetbrains.kotlin.plugin.serialization") version "1.9.21"
@@ -49,6 +50,11 @@ android {
     buildFeatures {
         compose = true
     }
+
+    // Room schema location
+    room {
+        schemaDirectory("$projectDir/schemas")
+    }
 }
 
 dependencies {
@@ -81,6 +87,12 @@ dependencies {
     // Paging
     implementation(libs.androidx.paging.runtime)
     implementation(libs.androidx.paging.compose)
+
+    // Room
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    annotationProcessor(libs.room.compiler)
+    kapt(libs.room.compiler) // Room için kapt ekledim
 
 
     testImplementation(libs.junit)
