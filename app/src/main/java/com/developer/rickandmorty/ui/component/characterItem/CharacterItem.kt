@@ -2,6 +2,7 @@ package com.developer.rickandmorty.ui.component.characterItem
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -33,17 +34,23 @@ import com.developer.rickandmorty.ui.component.favoritebutton.FavoriteButton
 @Composable
 fun CharacterItem(
     character: CharacterDetailModel,
-    onFavoriteChange: (Boolean) -> Unit = {}
+    onFavoriteChange: (Boolean) -> Unit = {},
+    onCharacterClick: (CharacterDetailModel) -> Unit = {}
 ) {
     
     Box(
         modifier = Modifier
+            .clickable {
+                onCharacterClick(character)
+            }
             .height(200.dp)
             .fillMaxWidth()
             .background(color = Color.Transparent)
             .padding(bottom = 13.dp),
-        contentAlignment = Alignment.BottomStart
+        contentAlignment = Alignment.BottomStart,
+
     ) {
+
 
         Box(
             modifier = Modifier

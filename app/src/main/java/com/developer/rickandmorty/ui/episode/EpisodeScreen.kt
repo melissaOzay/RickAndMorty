@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import com.developer.rickandmorty.core.base.BaseScreen
 import com.developer.rickandmorty.features.data.model.EpisodeDetailModel
 import com.developer.rickandmorty.ui.component.epissodeItem.EpisodeItem
 
@@ -18,17 +19,20 @@ import com.developer.rickandmorty.ui.component.epissodeItem.EpisodeItem
 fun EpisodeScreen(
     viewModel: EpisodeVM
 ) {
-    val episodes by viewModel.episodes.collectAsState(emptyList())
-    Box(
-        modifier = Modifier.fillMaxSize()
-            .background(Color.DarkGray),
-        contentAlignment = Alignment.Center
-    ) {
-        EpisodeList(
-            episodes,
-        )
-    }
+    BaseScreen(viewModel = viewModel) {
+        val episodes by viewModel.episodes.collectAsState(emptyList())
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.DarkGray),
+            contentAlignment = Alignment.Center
+        ) {
+            EpisodeList(
+                episodes,
+            )
+        }
 
+    }
 }
 
 @Composable

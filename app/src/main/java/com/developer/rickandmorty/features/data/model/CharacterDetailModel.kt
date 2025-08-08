@@ -1,5 +1,9 @@
 package com.developer.rickandmorty.features.data.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class CharacterDetailModel(
     val id: Int,
     val name: String,
@@ -8,4 +12,4 @@ data class CharacterDetailModel(
     val gender: String,
     val image: String,
     var isFavorite: Boolean = false,
-)
+):Parcelable

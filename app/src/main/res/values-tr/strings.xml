@@ -4,4 +4,8 @@
     <string name="menu_home">Anasayfa</string>
     <string name="menu_favorite">Favoriler</string>
     <string name="menu_episode">Bölümler</string>
+    <string name="name">İsim :</string>
+    <string name="status">Durum :</string>
+    <string name="type">Tür :</string>
+    <string name="gender">Cinsiyet :</string>
 </resources>

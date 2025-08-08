@@ -3,4 +3,8 @@
     <string name="menu_home">Home</string>
     <string name="menu_favorite">Favorites</string>
     <string name="menu_episode">Episode</string>
+    <string name="name">Name :</string>
+    <string name="status">Status :</string>
+    <string name="type">Type :</string>
+    <string name="gender">Gender :</string>
 </resources>

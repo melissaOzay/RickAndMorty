@@ -6,6 +6,8 @@ plugins {
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
     id("org.jetbrains.kotlin.plugin.serialization") version "1.9.21"
+    id ("kotlin-parcelize")
+
 }
 
 android {
@@ -76,6 +78,9 @@ dependencies {
     // Retrofit
     implementation(libs.retrofit)
 
+    //Gson
+    implementation(libs.androidx.gson)
+
     // OkHttp
     implementation(libs.okhttp)
     implementation(libs.okhttp.logging.interceptor)
@@ -88,11 +93,14 @@ dependencies {
     implementation(libs.androidx.paging.runtime)
     implementation(libs.androidx.paging.compose)
 
+    // Navigation
+    implementation(libs.androidx.navigation)
+
     // Room
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
     annotationProcessor(libs.room.compiler)
-    kapt(libs.room.compiler) // Room için kapt ekledim
+    kapt(libs.room.compiler)
 
 
     testImplementation(libs.junit)

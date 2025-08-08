@@ -10,10 +10,10 @@ import androidx.compose.ui.Modifier
 
 @Composable
 fun BaseScreen(
-    viewModel: BaseViewModel,
+    viewModel: BaseViewModel?=null,
     content : @Composable () -> Unit
 ){
-    val isLoading = viewModel.loadingState.collectAsState().value
+    val isLoading = viewModel?.loadingState?.collectAsState()?.value
 
     Box(
         modifier = Modifier.fillMaxSize(),
@@ -21,7 +21,7 @@ fun BaseScreen(
     ){
         content()
 
-        if(isLoading){
+        if(isLoading == true){
             CustomLoadingDialog()
         }
     }

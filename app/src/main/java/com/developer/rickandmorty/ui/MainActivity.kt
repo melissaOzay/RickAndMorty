@@ -5,7 +5,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -19,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     
-    private val viewModel: CharacterListVM by viewModels()
+    private val characterListVM: CharacterListVM by viewModels()
     private val favoritesVM: FavoritesVM by viewModels()
     private val episodeVM: EpisodeVM by viewModels()
 
@@ -31,7 +30,11 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = Color.DarkGray
                 ) {
-                    MainScreenWithFabMenu(characterListVM = viewModel, favoriteVM = favoritesVM , episodeVM = episodeVM)
+                    MainScreenWithFabMenu(
+                        characterListVM = characterListVM, 
+                        favoriteVM = favoritesVM, 
+                        episodeVM = episodeVM
+                    )
                 }
             }
         }
