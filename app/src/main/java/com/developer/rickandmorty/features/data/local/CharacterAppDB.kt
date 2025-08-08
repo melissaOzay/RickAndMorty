@@ -4,12 +4,14 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.developer.rickandmorty.features.data.local.dao.CharacterDao
 import com.developer.rickandmorty.features.data.local.entity.CharacterEntity
+import com.developer.rickandmorty.features.data.local.entity.EpisodeEntity
 
 @Database(
     entities = [
         CharacterEntity::class,
+        EpisodeEntity::class
     ],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 abstract class CharacterAppDB : RoomDatabase() {

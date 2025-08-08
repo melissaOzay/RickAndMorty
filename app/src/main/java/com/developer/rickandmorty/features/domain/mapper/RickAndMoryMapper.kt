@@ -1,9 +1,10 @@
 package com.developer.rickandmorty.features.domain.mapper
 
-import android.util.Log
 import com.developer.rickandmorty.features.data.model.CharacterDetailModel
 import com.developer.rickandmorty.features.data.model.CharacterModel
+import com.developer.rickandmorty.features.data.model.EpisodeDetailModel
 import com.developer.rickandmorty.features.data.remote.models.response.CharacterResponse
+import com.developer.rickandmorty.features.data.remote.models.response.EpisodeDetailResponse
 
 fun CharacterResponse.toCharacterModel(list: List<CharacterDetailModel>): CharacterModel {
     return CharacterModel(
@@ -20,4 +21,11 @@ fun CharacterResponse.toCharacterModel(list: List<CharacterDetailModel>): Charac
                 isFavorite = isFavorite
             )
         })
+}
+fun EpisodeDetailResponse.toEpisodeModel(): EpisodeDetailModel {
+    return EpisodeDetailModel(
+        id = this.id,
+        name = this.name,
+        date = this.date
+    )
 }

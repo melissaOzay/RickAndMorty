@@ -1,6 +1,7 @@
 package com.developer.rickandmorty.features.data.remote.network
 
 import com.developer.rickandmorty.features.data.remote.models.response.CharacterResponse
+import com.developer.rickandmorty.features.data.remote.models.response.EpisodeResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -10,5 +11,8 @@ interface RickAndMortyApiService {
     suspend fun getCharacters(
         @Query("page") pageNumber: Int,
     ): CharacterResponse
+
+    @GET("episode")
+    suspend fun getEpisode(): EpisodeResponse
 
 }

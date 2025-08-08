@@ -5,6 +5,7 @@ import com.developer.rickandmorty.features.domain.repository.RickAndMortyReposit
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 

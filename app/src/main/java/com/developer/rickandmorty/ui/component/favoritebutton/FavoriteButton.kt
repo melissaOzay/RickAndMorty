@@ -1,4 +1,4 @@
-package com.developer.rickandmorty.ui.favoritebutton
+package com.developer.rickandmorty.ui.component.favoritebutton
 
 import androidx.compose.foundation.Image
 import androidx.compose.material.icons.Icons

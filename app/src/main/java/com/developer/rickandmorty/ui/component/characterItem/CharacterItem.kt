@@ -1,6 +1,5 @@
-package com.developer.rickandmorty.ui.character
+package com.developer.rickandmorty.ui.component.characterItem
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -29,7 +28,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.developer.rickandmorty.R
 import com.developer.rickandmorty.features.data.model.CharacterDetailModel
-import com.developer.rickandmorty.ui.favoritebutton.FavoriteButton
+import com.developer.rickandmorty.ui.component.favoritebutton.FavoriteButton
 
 @Composable
 fun CharacterItem(
@@ -51,7 +50,7 @@ fun CharacterItem(
                 .clip(RoundedCornerShape(8.dp))
                 .height(140.dp)
                 .fillMaxWidth()
-                .background(Color.DarkGray)
+                .background(Color.Gray)
 
         ) {
 

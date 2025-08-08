@@ -6,10 +6,10 @@ import androidx.paging.PagingData
 import com.developer.rickandmorty.core.Result
 import com.developer.rickandmorty.features.data.local.db.CharacterLocalDS
 import com.developer.rickandmorty.features.data.model.CharacterDetailModel
-import com.developer.rickandmorty.features.data.model.CharacterModel
+import com.developer.rickandmorty.features.data.model.EpisodeDetailModel
 import com.developer.rickandmorty.features.data.remote.network.RickAndMortyApiService
 import com.developer.rickandmorty.features.domain.datasource.CharactersPagingSource
-import com.developer.rickandmorty.features.domain.mapper.toCharacterModel
+import com.developer.rickandmorty.features.domain.mapper.toEpisodeModel
 import com.developer.rickandmorty.features.domain.repository.RickAndMortyRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -18,7 +18,7 @@ import javax.inject.Inject
 class RickAndMortyRepositoryImpl @Inject constructor(
     private val characterLocalDS: CharacterLocalDS,
     private val apiService: RickAndMortyApiService
-): RickAndMortyRepository {
+) : RickAndMortyRepository {
 
 
     override fun getFavoriteCharacter(): Flow<Result<List<CharacterDetailModel>>> {
@@ -31,7 +31,7 @@ class RickAndMortyRepositoryImpl @Inject constructor(
                     emit(Result.Success(favoriteCharacters))
                 }
 
-            }catch (e: Exception) {
+            } catch (e: Exception) {
                 emit(Result.Error(e.message ?: "An unknown error occurred"))
             }
         }
@@ -41,6 +41,23 @@ class RickAndMortyRepositoryImpl @Inject constructor(
         return try {
             val isFavorite = characterLocalDS.toggleFavorite(characterModel)
             Result.Success(isFavorite)
+        } catch (e: Exception) {
+            Result.Error(e.message ?: "An unknown error occurred")
+        }
+    }
+
+    override suspend fun getEpisode(): Result<List<EpisodeDetailModel>> {
+        return try {
+            val getLocalEpisode = characterLocalDS.getEpisode()
+            if (getLocalEpisode.isNotEmpty()) {
+                Result.Success(getLocalEpisode)
+            } else {
+                val response = apiService.getEpisode()
+                val episodeModel = response.episode.map {
+                    it.toEpisodeModel()
+                }
+                Result.Success(episodeModel)
+            }
         } catch (e: Exception) {
             Result.Error(e.message ?: "An unknown error occurred")
         }

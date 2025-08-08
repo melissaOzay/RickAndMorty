@@ -1,4 +1,4 @@
-package com.developer.rickandmorty.ui.bottom_menu
+package com.developer.rickandmorty.ui.component.bottom_menu
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -21,6 +21,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.developer.rickandmorty.R
+import com.developer.rickandmorty.ui.episode.EpisodeScreen
+import com.developer.rickandmorty.ui.episode.EpisodeVM
 import com.developer.rickandmorty.ui.favoritesScreen.FavoritesScreen
 import com.developer.rickandmorty.ui.favoritesScreen.FavoritesVM
 import com.developer.rickandmorty.ui.home.CharacterListVM
@@ -32,7 +34,8 @@ enum class Screen {
 
 @Composable
 fun MainScreenWithFabMenu(characterListVM: CharacterListVM? = null ,
-favoriteVM: FavoritesVM? = null
+favoriteVM: FavoritesVM? = null,
+episodeVM: EpisodeVM? = null,
 ) {
     var currentScreen by remember { mutableStateOf(Screen.HOME) }
 
@@ -86,7 +89,7 @@ favoriteVM: FavoritesVM? = null
                 }
 
                 Screen.FAVORITE -> favoriteVM?.let { FavoritesScreen(it) }
-                Screen.EPISODE -> EpisodeScreen()
+                Screen.EPISODE -> episodeVM?.let { EpisodeScreen(it) }
             }
         }
     }

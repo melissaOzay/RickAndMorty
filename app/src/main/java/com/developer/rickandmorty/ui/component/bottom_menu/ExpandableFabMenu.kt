@@ -1,4 +1,4 @@
-package com.developer.rickandmorty.ui.bottom_menu
+package com.developer.rickandmorty.ui.component.bottom_menu
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.spring

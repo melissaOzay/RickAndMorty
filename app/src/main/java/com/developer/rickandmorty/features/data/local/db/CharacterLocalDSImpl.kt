@@ -2,7 +2,9 @@ package com.developer.rickandmorty.features.data.local.db
 
 import com.developer.rickandmorty.features.data.local.dao.CharacterDao
 import com.developer.rickandmorty.features.data.local.entity.CharacterEntity
+import com.developer.rickandmorty.features.data.local.entity.EpisodeEntity
 import com.developer.rickandmorty.features.data.model.CharacterDetailModel
+import com.developer.rickandmorty.features.data.model.EpisodeDetailModel
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -53,6 +55,37 @@ class CharacterLocalDSImpl @Inject constructor(
             }
         } catch (e: Exception) {
             return emptyList()
+        }
+    }
+
+    override suspend fun getEpisode(): List<EpisodeDetailModel> {
+       return try {
+            val episodes = characterDao.getEpisodeList()
+            episodes.map { entity ->
+                EpisodeDetailModel(
+                    id = entity.episodeId,
+                    name = entity.name,
+                    date = entity.date
+                )
+            }
+        } catch (e: Exception) {
+            emptyList()
+       }
+    }
+
+    override suspend fun addedEpisode(list: List<EpisodeDetailModel>) {
+        try {
+            list.map {
+                episode ->
+                val entity = EpisodeEntity(
+                    episodeId = episode.id,
+                    name = episode.name,
+                    date = episode.date
+                )
+                characterDao.addEpisode(entity)
+            }
+              }catch (e: Exception) {
+
         }
     }
 }
