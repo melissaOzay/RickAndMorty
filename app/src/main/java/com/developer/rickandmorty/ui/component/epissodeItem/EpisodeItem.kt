@@ -44,7 +44,7 @@ fun EpisodeItem(
                     .fillMaxHeight(0.8f),
                 painter = (episodeDetailModel.image?.let { painterResource(id = it) }!!),
                 contentDescription = null,
-                contentScale = ContentScale.Fit
+                contentScale = ContentScale.Crop
             )
             Text(
                 text = episodeDetailModel.name,

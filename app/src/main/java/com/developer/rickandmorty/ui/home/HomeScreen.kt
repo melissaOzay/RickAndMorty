@@ -7,11 +7,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateMapOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
+import kotlinx.coroutines.flow.Flow
 import com.developer.rickandmorty.core.base.BaseScreen
 import com.developer.rickandmorty.features.data.model.CharacterDetailModel
 import com.developer.rickandmorty.ui.component.characterItem.CharacterItem
@@ -23,7 +27,9 @@ fun HomeScreen(
     onCharacterClick: (CharacterDetailModel) -> Unit = {}
 ) {
     BaseScreen(viewModel = viewModel) {
-        val characters = viewModel.getCharacters().collectAsLazyPagingItems()
+        val charactersFlow: Flow<androidx.paging.PagingData<CharacterDetailModel>> = remember { viewModel.getCharacters() }
+        val characters = charactersFlow.collectAsLazyPagingItems()
+        val isSuccess by viewModel.isSuccess.collectAsState(false)
 
         Box(
             modifier = Modifier
@@ -38,12 +44,14 @@ fun HomeScreen(
                 },
                 onCharacterClick = {
                     onCharacterClick.invoke(it)
+                },
+                isSuccess = isSuccess,
+                onRefresh = {
+                    viewModel.updaterRefresh()
                 }
             )
         }
-        LaunchedEffect(Unit) {
-            viewModel.getCharacters()
-        }
+        // getCharacters() zaten Flow döndürüyor; ekstra çağrı gereksiz
     }
 }
 
@@ -52,18 +60,29 @@ fun CharacterList(
     characters: LazyPagingItems<CharacterDetailModel>,
     onCharacterFavoriteClick: (CharacterDetailModel) -> Unit = {},
     onCharacterClick: (CharacterDetailModel) -> Unit = {},
+    isSuccess:Boolean= false,
+    onRefresh: () -> Unit = {  }
 ) {
+    val toggledFavorites = remember { mutableStateMapOf<Int, Boolean>() }
+    LaunchedEffect(isSuccess) {
+        if (isSuccess) {
+            characters.refresh()
+            onRefresh.invoke()
+            toggledFavorites.clear()
+        }
+    }
     LazyColumn {
         items(
             count = characters.itemCount,
             key = { index -> characters[index]?.id ?: index }
         ) { index ->
             characters[index]?.let { character ->
+                val effectiveChecked = toggledFavorites[character.id] ?: character.isFavorite
                 CharacterItem(
-                    character = character,
+                    character = character.copy(isFavorite = effectiveChecked),
                     onFavoriteChange = {
+                        toggledFavorites[character.id] = it
                         onCharacterFavoriteClick(character)
-                        characters.refresh()
                     },
                     onCharacterClick = { onCharacterClick(character) }
                 )

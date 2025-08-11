@@ -32,13 +32,13 @@ fun BottomNavigation(navController: NavController, onScreenChange: (String) -> U
                     Icon(
                         imageVector = item.icon,
                         contentDescription = item.title,
-                        tint = if (currentRoute == item.path) Color.White else Color.Gray
+                        tint = if (currentRoute == item.path) Color.Green else Color.White
                     )
                 },
                 label = {
                     Text(
                         text = item.title,
-                        color = if (currentRoute == item.path) Color.White else Color.Gray
+                        color = if (currentRoute == item.path) Color.Green else Color.White
                     )
                 },
                 selected = currentRoute == item.path,
