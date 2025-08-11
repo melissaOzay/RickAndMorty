@@ -102,6 +102,9 @@ dependencies {
     annotationProcessor(libs.room.compiler)
     kapt(libs.room.compiler)
 
+    //ssp-sdp
+    implementation(libs.intuit.sdp)
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

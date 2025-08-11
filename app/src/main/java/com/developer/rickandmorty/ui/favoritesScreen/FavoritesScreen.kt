@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import com.developer.rickandmorty.core.base.BaseScreen
 import com.developer.rickandmorty.features.data.model.CharacterDetailModel
 import com.developer.rickandmorty.ui.component.characterItem.CharacterItem
+import network.chaintech.sdpcomposemultiplatform.sdp
 
 @SuppressLint("UnrememberedMutableState")
 @Composable
@@ -29,7 +30,7 @@ fun FavoritesScreen(viewModel: FavoritesVM) {
 
     Box(
         modifier = Modifier.fillMaxSize()
-            .padding(top = 10.dp)
+            .padding(top = 10.sdp)
             .background(Color.DarkGray),
         contentAlignment = Alignment.TopCenter
     ) {

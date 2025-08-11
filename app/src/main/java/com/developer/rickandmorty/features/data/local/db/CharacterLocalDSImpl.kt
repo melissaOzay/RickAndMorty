@@ -65,7 +65,8 @@ class CharacterLocalDSImpl @Inject constructor(
                 EpisodeDetailModel(
                     id = entity.episodeId,
                     name = entity.name,
-                    date = entity.date
+                    date = entity.date,
+                    image = entity.image
                 )
             }
         } catch (e: Exception) {
@@ -80,7 +81,8 @@ class CharacterLocalDSImpl @Inject constructor(
                 val entity = EpisodeEntity(
                     episodeId = episode.id,
                     name = episode.name,
-                    date = episode.date
+                    date = episode.date,
+                    image = episode.image
                 )
                 characterDao.addEpisode(entity)
             }

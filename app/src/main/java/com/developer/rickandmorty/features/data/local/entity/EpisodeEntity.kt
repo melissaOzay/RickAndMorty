@@ -14,4 +14,6 @@ data class EpisodeEntity(
     val name: String,
     @ColumnInfo(name = "date")
     val date: String,
+    @ColumnInfo(name = "image")
+    val image: Int?=null,
 )

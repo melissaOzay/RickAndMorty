@@ -15,6 +15,7 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import com.developer.rickandmorty.core.base.BaseScreen
 import com.developer.rickandmorty.features.data.model.CharacterDetailModel
 import com.developer.rickandmorty.ui.component.characterItem.CharacterItem
+import network.chaintech.sdpcomposemultiplatform.sdp
 
 @Composable
 fun HomeScreen(
@@ -28,7 +29,7 @@ fun HomeScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .background(Color.DarkGray)
-                .padding(top = 10.dp)
+                .padding(top = 10.sdp)
         ) {
             CharacterList(
                 characters,

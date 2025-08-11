@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -17,12 +18,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.developer.rickandmorty.R
 import com.developer.rickandmorty.features.data.model.EpisodeDetailModel
+import com.developer.rickandmorty.ui.theme.getMyTypography
+import network.chaintech.sdpcomposemultiplatform.sdp
 
 @Composable
 fun EpisodeItem(
@@ -30,10 +29,10 @@ fun EpisodeItem(
 ) {
     Box(
         modifier = Modifier
-            .padding(horizontal = 10.dp, vertical = 10.dp)
-            .width(300.dp)
+            .padding(horizontal = 10.sdp)
+            .width(270.dp)
             .height(500.dp)
-            .clip(RoundedCornerShape(8.dp))
+            .clip(RoundedCornerShape(8.sdp))
             .background(color = Color.Green)
     ) {
         Column(
@@ -42,28 +41,24 @@ fun EpisodeItem(
             Image(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(420.dp),
-                painter = (painterResource(id = R.drawable.cover1)),
+                    .fillMaxHeight(0.8f),
+                painter = (episodeDetailModel.image?.let { painterResource(id = it) }!!),
                 contentDescription = null,
-                contentScale = ContentScale.Crop
+                contentScale = ContentScale.Fit
             )
             Text(
                 text = episodeDetailModel.name,
-                fontFamily = FontFamily.Serif,
-                fontWeight = FontWeight.Bold,
-                fontSize = 20.sp,
+                style = getMyTypography().bodyLarge,
                 modifier = Modifier
                     .background(Color.Green)
-                    .padding(start = 10.dp, top = 4.dp)
+                    .padding(start = 10.sdp, top = 4.sdp)
             )
             Text(
                 text = episodeDetailModel.date,
-                fontFamily = FontFamily.Serif,
-                fontWeight = FontWeight.Medium,
-                fontSize = 18.sp,
+                style = getMyTypography().titleMedium,
                 modifier = Modifier
                     .background(Color.Green)
-                    .padding(start = 10.dp, top = 4.dp)
+                    .padding(start = 10.sdp, top = 4.dp)
             )
         }
     }

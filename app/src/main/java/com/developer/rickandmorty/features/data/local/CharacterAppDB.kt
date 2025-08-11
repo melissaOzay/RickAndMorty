@@ -11,7 +11,7 @@ import com.developer.rickandmorty.features.data.local.entity.EpisodeEntity
         CharacterEntity::class,
         EpisodeEntity::class
     ],
-    version = 3,
+    version = 4,
     exportSchema = false
 )
 abstract class CharacterAppDB : RoomDatabase() {

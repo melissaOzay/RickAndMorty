@@ -22,10 +22,11 @@ fun CharacterResponse.toCharacterModel(list: List<CharacterDetailModel>): Charac
             )
         })
 }
-fun EpisodeDetailResponse.toEpisodeModel(): EpisodeDetailModel {
+fun EpisodeDetailResponse.toEpisodeModel(image:Int): EpisodeDetailModel {
     return EpisodeDetailModel(
         id = this.id,
         name = this.name,
-        date = this.date
+        date = this.date,
+        image = image
     )
 }

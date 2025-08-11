@@ -3,6 +3,7 @@ package com.developer.rickandmorty.ui.episode
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import com.developer.rickandmorty.R
 import com.developer.rickandmorty.core.Result
 import com.developer.rickandmorty.core.base.BaseViewModel
 import com.developer.rickandmorty.features.data.model.CharacterDetailModel
@@ -26,17 +27,14 @@ class EpisodeVM @Inject constructor(
     ) : BaseViewModel() {
 
         init {
-            getFavorites()
+            getEpisodes()
         }
 
     private val _episodes = MutableStateFlow<List<EpisodeDetailModel>>(emptyList())
     val episodes = _episodes.asStateFlow()
 
-    init {
-        getFavorites()
-    }
 
-    private fun getFavorites() {
+    private fun getEpisodes() {
         showLoading()
         viewModelScope.launch {
             episodeUseCase.getEpisode().let { result ->

@@ -20,6 +20,8 @@ paging = "3.3.6"
 room = "2.7.2"
 navigation = "2.9.3"
 gson = "2.12.1"
+ssp-sdp = "1.0.6"
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -49,6 +51,7 @@ androidx-coil = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 androidx-paging-runtime = { group = "androidx.paging", name = "paging-runtime", version.ref = "paging" }
 androidx-paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "paging" }
 androidx-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
+intuit-sdp = { group = "network.chaintech", name = "sdp-ssp-compose-multiplatform", version.ref = "ssp-sdp" }
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }

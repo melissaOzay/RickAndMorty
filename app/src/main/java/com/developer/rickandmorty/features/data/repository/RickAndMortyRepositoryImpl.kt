@@ -3,6 +3,7 @@ package com.developer.rickandmorty.features.data.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import com.developer.rickandmorty.R
 import com.developer.rickandmorty.core.Result
 import com.developer.rickandmorty.features.data.local.db.CharacterLocalDS
 import com.developer.rickandmorty.features.data.model.CharacterDetailModel
@@ -47,15 +48,26 @@ class RickAndMortyRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getEpisode(): Result<List<EpisodeDetailModel>> {
+         val images = listOf(
+            R.drawable.cover1,
+            R.drawable.cover2,
+            R.drawable.cover3,
+            R.drawable.cover4,
+            R.drawable.cover5,
+            R.drawable.cover6,
+            R.drawable.cover7,
+        )
         return try {
             val getLocalEpisode = characterLocalDS.getEpisode()
             if (getLocalEpisode.isNotEmpty()) {
                 Result.Success(getLocalEpisode)
             } else {
                 val response = apiService.getEpisode()
-                val episodeModel = response.episode.map {
-                    it.toEpisodeModel()
+                val episodeModel = response.episode.mapIndexed { index, episodeDetailResponse ->
+                    val imageIndex = index % images.size
+                    episodeDetailResponse.toEpisodeModel(images[imageIndex])
                 }
+                characterLocalDS.addedEpisode(episodeModel)
                 Result.Success(episodeModel)
             }
         } catch (e: Exception) {
