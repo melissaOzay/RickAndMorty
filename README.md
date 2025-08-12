@@ -10,8 +10,7 @@ UI: Jetpack Compose
 6) Retrofit 2 ,<br/>
 7) [Navigation Compose](https://developer.android.com/develop/ui/compose/navigation),<br/>
 8) [Paging, Paging - Compose](https://developer.android.com/jetpack/androidx/releases/paging),<br/>
-9) [Paging, Paging - Compose](https://developer.android.com/jetpack/androidx/releases/paging),<br/>
-10) OkHttp 3 <br/>
+9) OkHttp 3 <br/>
 
 
 
