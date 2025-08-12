@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "serena": {
+      "command": "/opt/homebrew/bin/uv",
+      "args": [
+        "run",
+        "--directory",
+        "/Users/melisaozaydin/AndroidStudioProjects/RickAndMorty2/.serena",
+        "serena-mcp-server"
+      ],
+      "env": {
+        "XDG_DATA_HOME": "/Users/melisaozaydin/AndroidStudioProjects/RickAndMorty2/.uv",
+        "XDG_STATE_HOME": "/Users/melisaozaydin/AndroidStudioProjects/RickAndMorty2/.uv",
+        "UV_PYTHON_INSTALL_DIR": "/Users/melisaozaydin/AndroidStudioProjects/RickAndMorty2/.uv/python",
+        "UV_TOOL_DIR": "/Users/melisaozaydin/AndroidStudioProjects/RickAndMorty2/.uv/tools"
+      }
+    }
+  }
+}
